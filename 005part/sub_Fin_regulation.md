@@ -51,9 +51,17 @@
 
 ## 1.2财务规范化-商品相关控制
 
--  映射字段、税票编码、执行标准、安全技术类别：根据商品税票编码基础表数据给默认值（DIC_CLS_TAX）
--  最低批发占比：所有分部开票供应商设置为【0.1】
--  小规模税率：所有分部默认值为【0.01】
+- 映射字段、税票编码、执行标准、安全技术类别：根据商品税票编码基础表数据给默认值（DIC_CLS_TAX）
+
+- 最低批发占比：所有分部开票供应商设置为【0.1】
+
+- 小规模税率：所有分部默认值为【0.01】
+
+  ```
+  select 0.10 MIN_WHOLESALERATIO,0.01 small_taxrate from dual
+  ```
+
+  
 
 # 2.财务规范化-中心控制
 
@@ -61,17 +69,43 @@
 
 - 所选商品如果不开票则不可加入试点店
 
+  ```
+  Select * From Sfsys.Handles a Where A.handleid = 90003
+  ```
+
+  
+
 ## 2.2财务规范化-采购单控制（SP\CP）
 
 - 导入的数据中试点店商品最低批发占比不能小于等于0
+
 - 供应商批发占比字段在选择供应商时系统自动赋值
+
+  ```
+  create or replace trigger TR_UPDATE_WHOSALERATIO
+  before UPDATE OF SUP_ID ON ordered_request
+  for each ROW
+  Declare
+    P_I NUMBER(6,4);
+  BEGIN
+    if :new.SUP_ID is not null THEN
+    select s.wholesaleratio into p_i from supplier s where s.sup_id=:new.SUP_ID;
+    :new.wholesaleratio := p_i;
+    end if;
+  END
+  ```
+
 - 在新增和修改ORDERS_REQUEST表的商品时，系统自动将商品的最低批发占比赋值给最低批发占比字段
+
 - 如商品是不开票则不能下单给试点店
 
 ## 2.3财务规范化-ASN预约控制（SP\CP）
 
 - 如商品是不开票则不分货给试点店，系统自动将试点店订货量分给GZY
 
+  ```
+  PAutoAssign
+  ```
 
 ## 2.4财务规范化-调配控制
 
