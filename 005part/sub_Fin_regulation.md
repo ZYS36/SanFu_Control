@@ -114,11 +114,29 @@
 ## 2.5财务规范化-调拨单控制
 
 - 试点店商品可调拨至非试点店、电商、试点店
+
 - 非试点店商品可以调拨至非试点店
+
 - 非试点店不开票商品不能调拨至试点店、电商
+
 - 非试点店开票商品可调拨至试点店、电商
+
 - 电商商品可调拨至试点店、非试点店
+
 - 目标店接受商品时不控制商品是否开票与门店属性关系
+
+- 仓库调拨至试点店/电商的商品，若包已发出则不控制；否则只能开票的商品调拨至试点店/电商
+
+  ```
+  --试点店
+  select code_value from sfinterface.pl_dic_code_detail e
+   where sub_code ='SHO_ID' and pause=0 and code_type='STD_SHOP'
+   --电商
+  select code_value from sfinterface.pl_dic_code_detail
+   where sub_code ='SHO_ID' and pause=0 and code_type='ON_SHOP
+  ```
+
+  
 
 ## 2.6 财务规范化-预付比例控制
 
