@@ -328,6 +328,7 @@
                                 <section class="normal markdown-section">
                                 
                                 <html><head></head><body><h1 id="1&#x8BA2;&#x5355;"><a name="1&#x8BA2;&#x5355;" class="plugin-anchor" href="#1&#x8BA2;&#x5355;"><i class="fa fa-link" aria-hidden="true"></i></a>1.&#x8BA2;&#x5355;</h1>
+<p>&#x8BF4;&#x660E;&#xFF1A;&#x672C;&#x7AE0;&#x8282;&#x63CF;&#x8FF0;&#x4E86;&#x5F85;&#x6536;&#x8D27;&#x8BA2;&#x5355;&#x8282;&#x70B9;&#x76F8;&#x5173;&#x63A7;&#x5236;&#x3001;&#x8BA2;&#x5355;&#x7ED3;&#x675F;&#x6B63;&#x5E38;&#x7ED3;&#x675F;&#x6536;&#x8D27;&#x63A7;&#x5236;&#x4EE5;&#x53CA;&#x5F02;&#x5E38;&#x8BA2;&#x5355;&#x5B9A;&#x4E49;&#x903B;&#x8F91;&#x3002;</p>
 <h2 id="11&#x6D89;&#x53CA;&#x5C97;&#x4F4D;"><a name="11&#x6D89;&#x53CA;&#x5C97;&#x4F4D;" class="plugin-anchor" href="#11&#x6D89;&#x53CA;&#x5C97;&#x4F4D;"><i class="fa fa-link" aria-hidden="true"></i></a>1.1&#x6D89;&#x53CA;&#x5C97;&#x4F4D;</h2>
 <p>&#x4E1A;&#x52A1;&#x6240;&#x8BF4;&#x7684;&#x8BA2;&#x5355;&#x6307;&#x7684;&#x662F;&#x91C7;&#x8D2D;&#x5355;&#x6279;&#x51C6;&#x540E;&#x7684;&#x6B63;&#x5F0F;&#x8BA2;&#x5355;&#x548C;&#x718A;&#x732B;&#x8BA2;&#x5355;&#x7A97;&#x53E3;&#x6709;&#x6240;&#x533A;&#x522B;&#xFF1B;&#x672C;&#x7AE0;&#x8282;&#x4E3B;&#x8981;&#x8BB2;&#x8FF0;&#x7684;&#x65F6;&#x6D89;&#x53CA;&#x5230;&#x8BA2;&#x5355;&#x7684;&#x76F8;&#x5173;&#x63A7;&#x5236;&#x3002;&#x8BA2;&#x5355;&#x6D89;&#x53CA;&#x5230;&#x7684;&#x5C97;&#x4F4D;&#x6709;&#xFF1A;&#x5907;&#x8D27;&#x5458;&#x3001;&#x8C03;&#x914D;&#x3001;&#x5206;&#x90E8;&#x8C03;&#x4EF7;&#x5458;&#x3001;&#x5206;&#x8D27;&#x5458;&#x3001;&#x63A5;&#x6536;&#x5458;&#x3001;&#x6536;&#x8D27;&#x5458;&#x3001;&#x5546;&#x54C1;&#x53D8;&#x4EF7;&#x5458;&#x3001;&#x9A8C;&#x8D27;&#x5458;</p>
 <pre><code>select max(1) from dual where (GetShopProperty(&apos;distribute&apos;,%sho_id%)=1 or GetShopProperty(&apos;SECONDWAREHOUSE&apos;,%sho_id%)=1)
@@ -338,10 +339,8 @@
 <p>&#x4FEE;&#x6539;&#x8BED;&#x53E5;&#x53EF;&#x8BBE;&#x7F6E;&#x5206;&#x8D27;&#x63A7;&#x5236;&#x89C4;&#x5219;&#x3001;&#x5206;&#x8D27;&#x63A7;&#x5236;&#x5E97;&#x5177;&#x4F53;&#x5982;&#x4E0B;&#xFF1A;</p>
 <pre><code>update ORDERED
 set
- ACC_CTRL_RULE = :ACC_CTRL_RULE,
- ACC_CTRL_SHOPS = :ACC_CTRL_SHOPS,
- ACC_CTRL_EDITORID = %CurrentUserID%,
- ACC_CTRL_UPDTIME = SYSDATE
+ ACC_CTRL_RULE = :ACC_CTRL_RULE, ACC_CTRL_SHOPS = :ACC_CTRL_SHOPS,
+ ACC_CTRL_EDITORID = %CurrentUserID%, ACC_CTRL_UPDTIME = SYSDATE
 where
  ORD_ID = :OLD_ORD_ID
 </code></pre><h4 id="1212&#x6309;&#x94AE;&#x6743;&#x9650;&#x63A7;&#x5236;"><a name="1212&#x6309;&#x94AE;&#x6743;&#x9650;&#x63A7;&#x5236;" class="plugin-anchor" href="#1212&#x6309;&#x94AE;&#x6743;&#x9650;&#x63A7;&#x5236;"><i class="fa fa-link" aria-hidden="true"></i></a>1.2.1.2&#x6309;&#x94AE;&#x6743;&#x9650;&#x63A7;&#x5236;</h4>
@@ -362,22 +361,15 @@ where UserHasAction(%CurrentUserID%,40)=1 and UserHasAction(%CurrentUserID%,&apo
 <li>&#x6279;&#x53D1;&#x5360;&#x6BD4;&#x53EA;&#x80FD;&#x5728;0~1&#x4E4B;&#x95F4;</li>
 </ul>
 <p>&#x6309;&#x94AE;&#x6743;&#x9650;&#x63A7;&#x5236;</p>
-<pre><code>SELECT MAX(1) FROM Mvusers a
-         WHERE a.Userid = UPPER(%currentuserid%)
-           AND a.Jobname IN (&apos;&#x8DDF;&#x5355;&#x4E3B;&#x7BA1;&apos;,&apos;&#x8DDF;&#x5355;&#x4E13;&#x5458;&apos;,&apos;&#x8DDF;&#x5355;&#x7ECF;&#x7406;&apos;)
+<pre><code>SELECT MAX(1) FROM Mvusers a WHERE a.Userid = UPPER(%currentuserid%) AND a.Jobname IN (&apos;&#x8DDF;&#x5355;&#x4E3B;&#x7BA1;&apos;,&apos;&#x8DDF;&#x5355;&#x4E13;&#x5458;&apos;,&apos;&#x8DDF;&#x5355;&#x7ECF;&#x7406;&apos;)
 </code></pre><p>&#x6309;&#x94AE;&#x8BED;&#x53E5;</p>
 <pre><code>Declare
 P_I int;
 Begin
-
   if @WHOLESALERATIO@ &gt; 1 then 
     raise_application_error(-20002,&apos;&#x6279;&#x53D1;&#x5360;&#x6BD4;&#x53EA;&#x80FD;&#x5728;0~1&#x4E4B;&#x95F4;&#xFF01;&apos;);
   end if;
-
-    update ordered
-      set WHOLESALERATIO = @WHOLESALERATIO@
-    where ord_id in (%Selection%);
-
+    update ordered set WHOLESALERATIO = @WHOLESALERATIO@  where ord_id in (%Selection%);
 end;
 </code></pre><h5 id="3&#x3001;&#x66F4;&#x6539;&#x662F;&#x5426;&#x8D28;&#x68C0;&#x6309;&#x94AE;"><a name="3&#x3001;&#x66F4;&#x6539;&#x662F;&#x5426;&#x8D28;&#x68C0;&#x6309;&#x94AE;" class="plugin-anchor" href="#3&#x3001;&#x66F4;&#x6539;&#x662F;&#x5426;&#x8D28;&#x68C0;&#x6309;&#x94AE;"><i class="fa fa-link" aria-hidden="true"></i></a>3&#x3001;&#x66F4;&#x6539;&#x662F;&#x5426;&#x8D28;&#x68C0;&#x6309;&#x94AE;</h5>
 <ul>
@@ -385,26 +377,224 @@ end;
 <p>&#x6309;&#x94AE;&#x8BED;&#x53E5;</p>
 <pre><code>Update Asnorders a
    Set a.Is_Qc_Required = Case When @Is_Qc_Required@ = &apos;&#x662F;&apos; Then 1 Else 0 End
- Where Exists (Select 1
-          From Ordered b
-         Inner Join Asnordered c
-            On b.Ord_Id = c.Ord_Id
-         Where b.Ord_Id In (%Selection%)
-           And c.Asn_Id = a.Asn_Id
-           and c.finishtime is not null
-           And c.Lastpublishtime Is Null)
+ Where Exists (Select 1 From Ordered b
+         Inner Join Asnordered c On b.Ord_Id = c.Ord_Id
+         Where b.Ord_Id In (%Selection%) And c.Asn_Id = a.Asn_Id
+           and c.finishtime is not null And c.Lastpublishtime Is Null)
 </code></pre></li>
 </ul>
 <h5 id="4&#x3001;&#x7ED3;&#x675F;&#x8BA2;&#x5355;"><a name="4&#x3001;&#x7ED3;&#x675F;&#x8BA2;&#x5355;" class="plugin-anchor" href="#4&#x3001;&#x7ED3;&#x675F;&#x8BA2;&#x5355;"><i class="fa fa-link" aria-hidden="true"></i></a>4&#x3001;&#x7ED3;&#x675F;&#x8BA2;&#x5355;</h5>
-<h5 id="5&#x3001;&#x5F00;&#x59CB;&#x6536;&#x8D27;"><a name="5&#x3001;&#x5F00;&#x59CB;&#x6536;&#x8D27;" class="plugin-anchor" href="#5&#x3001;&#x5F00;&#x59CB;&#x6536;&#x8D27;"><i class="fa fa-link" aria-hidden="true"></i></a>5&#x3001;&#x5F00;&#x59CB;&#x6536;&#x8D27;</h5>
-<h5 id="6&#x3001;&#x5F55;&#x5165;qc&#x4E13;&#x5458;"><a name="6&#x3001;&#x5F55;&#x5165;qc&#x4E13;&#x5458;" class="plugin-anchor" href="#6&#x3001;&#x5F55;&#x5165;qc&#x4E13;&#x5458;"><i class="fa fa-link" aria-hidden="true"></i></a>6&#x3001;&#x5F55;&#x5165;QC&#x4E13;&#x5458;</h5>
-<h5 id="7&#x3001;&#x5F55;&#x5165;&#x8DDF;&#x5355;&#x5458;"><a name="7&#x3001;&#x5F55;&#x5165;&#x8DDF;&#x5355;&#x5458;" class="plugin-anchor" href="#7&#x3001;&#x5F55;&#x5165;&#x8DDF;&#x5355;&#x5458;"><i class="fa fa-link" aria-hidden="true"></i></a>7&#x3001;&#x5F55;&#x5165;&#x8DDF;&#x5355;&#x5458;</h5>
-<h5 id="8&#x3001;&#x8BBE;&#x7F6E;&#x9001;&#x8D27;&#x5355;"><a name="8&#x3001;&#x8BBE;&#x7F6E;&#x9001;&#x8D27;&#x5355;" class="plugin-anchor" href="#8&#x3001;&#x8BBE;&#x7F6E;&#x9001;&#x8D27;&#x5355;"><i class="fa fa-link" aria-hidden="true"></i></a>8&#x3001;&#x8BBE;&#x7F6E;&#x9001;&#x8D27;&#x5355;</h5>
+<ul>
+<li>&#x5355;&#x636E;&#x5DF2;&#x7ECF;&#x7ED3;&#x675F;&#xFF0C;&#x4E0D;&#x80FD;&#x6267;&#x884C;&#x8BE5;&#x64CD;&#x4F5C;</li>
+<li>&#x4E0D;&#x80FD;&#x7ED3;&#x675F;&#x6709;&#x5230;&#x8D27;&#x91CF;&#x7684;&#x8BA2;&#x5355;</li>
+<li>&#x8BA2;&#x5355;&#x6B63;&#x5728;&#x5206;&#x8D27;&#xFF0C;&#x4E0D;&#x80FD;&#x6267;&#x884C;&#x8BE5;&#x64CD;&#x4F5C;</li>
+<li>&#x4E0D;&#x80FD;&#x7ED3;&#x675F;&#x4ED6;&#x4EBA;&#x5355;&#x636E; </li>
+<li>&#x7ED3;&#x675F;&#x8BA2;&#x5355;&#x540E;&#x8BE5;&#x5355;&#x4E0D;&#x53EF;&#x518D;&#x6536;&#x8D27;(&#x63D0;&#x793A;)</li>
+</ul>
+<pre><code>Declare
+  p_Lockcol Varchar2(15);
+  p_i       Int;
+Begin
+  For Item In (Select a.Ord_Id From Ordered a Where a.Ord_Id In (%Selection%)) Loop
+    Select Max(1) Into p_i From Dual Where Not Exists (Select 1 From Ordered Where Ord_Id = Item.Ord_Id);
+    If p_i = 1 Then
+      Raise_Application_Error(-20002, &apos;&#x5355;&#x636E;&#x4E0D;&#x5B58;&#x5728;&apos;);
+    Else
+      Select Ord_Id Into p_Lockcol From Ordered Where Ord_Id = Item.Ord_Id For Update Nowait;
+      Select Max(1) Into p_i From Dual 
+       Where Exists (Select 1 From Ordered Where Ord_Id = Item.Ord_Id And Finishtime Is Not Null);
+      If p_i = 1 Then
+        Raise_Application_Error(-20002, &apos;&#x8BE5;&#x5355;&#x636E;&#x5DF2;&#x7ECF;&#x7ED3;&#x675F;&#xFF0C;&#x4E0D;&#x80FD;&#x6267;&#x884C;&#x8BE5;&#x64CD;&#x4F5C;&apos;);
+      Else
+        Select Max(1) Into p_i From Dual
+         Where Exists (Select 1  From Orders
+                 Where Ord_Id = Item.Ord_Id And Comeamount Is Not Null);
+        If p_i = 1 Then
+          Raise_Application_Error(-20002, &apos;&#x4E0D;&#x80FD;&#x7ED3;&#x675F;&#x6709;&#x5230;&#x8D27;&#x91CF;&#x7684;&#x8BA2;&#x5355;&apos;);
+        Else
+          Select Max(1) Into p_i From Dual
+           Where Exists (Select 1 From Orderaccept Where Ord_Id = Item.Ord_Id And Verifytime Is Null And Tabletype In (&apos;I&apos;, &apos;P&apos;))
+              Or Exists (Select 1 From Orderaccept a
+                          Inner Join Asnordered b On a.Ord_Id = b.Asn_Id And a.Tabletype In (&apos;N&apos;, &apos;M&apos;)
+                          Where a.Verifytime Is Null And b.Ord_Id = Item.Ord_Id)
+              Or Exists (Select 1 From Orderaccept a
+                   Inner Join Allocation b On a.Ord_Id = b.Doc_No And a.Tabletype = &apos;L&apos;
+                   Where a.Verifytime Is Null And b.Ord_Id = Item.Ord_Id);
+          If p_i = 1 Then
+            Raise_Application_Error(-20002,&apos;&#x8BE5;&#x8BA2;&#x5355;&#x6B63;&#x5728;&#x5206;&#x8D27;&#xFF0C;&#x4E0D;&#x80FD;&#x6267;&#x884C;&#x8BE5;&#x64CD;&#x4F5C;&apos;);
+          Else
+
+            --added 2018-8-20 by Huang Shumei &#x4E8C;&#x7EA7;&#x4ED3;&#x8BA2;&#x5355;&#x5DF2;&#x7ECF;&#x5230;&#x8FBE;&#x4E00;&#x7EA7;&#x4ED3;&#xFF0C;&#x4E0D;&#x5141;&#x8BB8;&#x5173;&#x95ED; start
+            Select Max(1) Into p_i From Dual
+             Where Exists (Select 1 From Sup_Delivered t
+                            Where t.Ord_Id = Item.Ord_Id And t.Dc_Accept_Date Is Not Null
+                              And t.Sw_Accept_Date Is Null And t.Is_Direct = 0);
+            If p_i = 1 Then
+              Raise_Application_Error(-20002,
+                                      &apos;&#x8BE5;&#x8BA2;&#x5355;&#x5DF2;&#x7ECF;&#x5230;&#x8FBE;&#x4E00;&#x7EA7;&#x4ED3;&#xFF0C;&#x6B63;&#x51C6;&#x5907;&#x53D1;&#x5F80;&#x4E8C;&#x7EA7;&#x4ED3;&#xFF0C;&#x4E0D;&#x80FD;&#x6267;&#x884C;&#x8BE5;&#x64CD;&#x4F5C;&apos;);
+            Else
+              --added 2018-8-20 by Huang Shumei &#x4E8C;&#x7EA7;&#x4ED3;&#x8BA2;&#x5355;&#x5DF2;&#x7ECF;&#x5230;&#x8FBE;&#x4E00;&#x7EA7;&#x4ED3;&#xFF0C;&#x4E0D;&#x5141;&#x8BB8;&#x5173;&#x95ED; end
+
+              Update Ordered Set Finishtime = Sysdate,Closecauseno = 1,Operatorid = %Currentuserid%
+               Where Ord_Id = Item.Ord_Id And Finishtime Is Null;
+
+              Update Reinforces Set Orderstatus = &apos;&#x5DF2;&#x7ED3;&#x675F;&apos; Where Cancelled = 0 And Tabletype = &apos;I&apos; And Tableid = Item.Ord_Id;
+
+              Update Reinforces Set Feedamount = 0 
+               Where Cancelled = 0 And Tabletype = &apos;I&apos; And Tableid = Item.Ord_Id And Feedamount Is Null;
+
+              Pupdateabendorder(Item.Ord_Id);
+
+              /*&#x4E8C;&#x7EA7;&#x4ED3;&#x8BA2;&#x5355;&#x624B;&#x52A8;&#x5173;&#x95ED;&#x65F6;&#xFF0C;&#x914D;&#x8D27;&#x65B9;&#x6848;&#x4E00;&#x5E76;&#x5173;&#x95ED; Added By ZhangQun 2017-11-21*/
+              Update Allocation a Set a.Doc_Status = &apos;C&apos;, a.Finishtime = Sysdate
+               Where a.Ord_Id = Item.Ord_Id
+                 And Exists (Select 1 From Nsfdata.Ordered b Where b.Ord_Id = a.Ord_Id
+                            --AND b.secondarysho_id IS NOT NULL
+                         And b.Ord_Id = Item.Ord_Id)
+                 And a.Doc_Status = &apos;A&apos;;
+            End If;
+          End If;
+        End If;
+      End If;
+    End If;
+  End Loop;
+End;
+</code></pre><pre><code>Select c.actionid,b.actioncaption,d.* From Sfsys.Action a
+ Inner Join Sfsys.actions b On A.actionid = B.actionid
+ Inner Join Sfsys.checkaction c On C.actionid = b.actionid
+ Inner Join Sfsys.Checkactions d On C.checkid = d.checkid
+ Where A.itemid = 2162 And A.actionid = 419&#x3001;
+</code></pre><h5 id="5&#x3001;&#x5F00;&#x59CB;&#x6536;&#x8D27;"><a name="5&#x3001;&#x5F00;&#x59CB;&#x6536;&#x8D27;" class="plugin-anchor" href="#5&#x3001;&#x5F00;&#x59CB;&#x6536;&#x8D27;"><i class="fa fa-link" aria-hidden="true"></i></a>5&#x3001;&#x5F00;&#x59CB;&#x6536;&#x8D27;</h5>
+<p>&#x6309;&#x94AE;&#x6743;&#x9650;&#x63A7;&#x5236;</p>
+<pre><code>Select Max(1)  From Dual
+ Where (Getshopproperty(&apos;distribute&apos;, %Sho_Id%) = 1 Or Getshopproperty(&apos;SECONDWAREHOUSE&apos;, %Sho_Id%) = 1)
+   And Canoperatebranch(%Currentuserid%, %Sho_Id%, %Bra_Id%) = 1
+</code></pre><p>&#x6309;&#x94AE;&#x8BED;&#x53E5;</p>
+<pre><code>update Ordered set ConsigneeID=%CurrentUserID% where ord_id in (%Selection%) and OperatorID is not null and 
+ConsigneeID is null and FinishTime is null and ord_id not in (select ord_id from Orders where GotAmount&gt;0)
+</code></pre><h5 id="6&#x3001;&#x5F55;&#x5165;qc&#x4E13;&#x5458;"><a name="6&#x3001;&#x5F55;&#x5165;qc&#x4E13;&#x5458;" class="plugin-anchor" href="#6&#x3001;&#x5F55;&#x5165;qc&#x4E13;&#x5458;"><i class="fa fa-link" aria-hidden="true"></i></a>6&#x3001;&#x5F55;&#x5165;QC&#x4E13;&#x5458;</h5>
+<p>&#x6309;&#x94AE;&#x6743;&#x9650;&#x63A7;&#x5236;</p>
+<pre><code>Select Max(1) From Dual
+ Where (Getshopproperty(&apos;distribute&apos;, %Sho_Id%) = 1 Or
+       Getshopproperty(&apos;SECONDWAREHOUSE&apos;, %Sho_Id%) = 1)
+   And Userhasaction(%Currentuserid%, 84) = 1  Or %Currentuserid% In (&apos;FQM&apos;)
+</code></pre><p>&#x6309;&#x94AE;&#x8BED;&#x53E5;</p>
+<pre><code>Declare
+P_I int;
+Begin   
+  select max(1) into p_i from users where userid =@QCID@;
+  if p_i &lt;&gt; 1 then
+     raise_application_error(-20002,&apos;&#x8F93;&#x5165;&#x7684;&#x5458;&#x5DE5;&#x53F7;&#x4E0D;&#x5408;&#x6CD5;&#xFF0C;&#x8BF7;&#x91CD;&#x65B0;&#x8F93;&#x5165;&#xFF01;&apos;);
+  end if;
+   select max(1) into p_i from dual where exists(select * from ordered where finishtime is not null and ord_id in (%Selection%));
+  if p_i =1 then 
+    raise_application_error(-20002,&apos;&#x9009;&#x4E2D;&#x7684;&#x67D0;&#x4E9B;&#x8BA2;&#x5355;&#x5DF2;&#x7ED3;&#x675F;&#xFF0C;&#x65E0;&#x6CD5;&#x5F55;&#x5165;&#x8DDF;&#x5355;&#x5458;&#xFF01;&apos;);
+  end if;
+    update ordered  set qcid =upper(@QCID@) where ord_id in (%Selection%);
+end;
+</code></pre><h5 id="7&#x3001;&#x5F55;&#x5165;&#x8DDF;&#x5355;&#x5458;"><a name="7&#x3001;&#x5F55;&#x5165;&#x8DDF;&#x5355;&#x5458;" class="plugin-anchor" href="#7&#x3001;&#x5F55;&#x5165;&#x8DDF;&#x5355;&#x5458;"><i class="fa fa-link" aria-hidden="true"></i></a>7&#x3001;&#x5F55;&#x5165;&#x8DDF;&#x5355;&#x5458;</h5>
+<p>&#x6309;&#x94AE;&#x6743;&#x9650;&#x63A7;&#x5236;</p>
+<pre><code>Select Max(1) From Dual
+ Where (Getshopproperty(&apos;distribute&apos;, %Sho_Id%) = 1 Or
+       Getshopproperty(&apos;SECONDWAREHOUSE&apos;, %Sho_Id%) = 1)
+   And Userhasaction(%Currentuserid%, 84) = 1 Or %Currentuserid% In (&apos;FQM&apos;)
+</code></pre><p>&#x6309;&#x94AE;&#x8BED;&#x53E5;</p>
+<pre><code>Declare
+P_I int;
+Begin   
+  select max(1) into p_i from users where userid =@merchandiserid@; 
+  if p_i &lt;&gt; 1 then
+     raise_application_error(-20002,&apos;&#x8F93;&#x5165;&#x7684;&#x5458;&#x5DE5;&#x53F7;&#x4E0D;&#x5408;&#x6CD5;&#xFF0C;&#x8BF7;&#x91CD;&#x65B0;&#x8F93;&#x5165;&#xFF01;&apos;);
+  end if;
+   select max(1) into p_i from dual where exists(select * from ordered where finishtime is not null and ord_id in (%Selection%));
+  if p_i =1 then 
+    raise_application_error(-20002,&apos;&#x9009;&#x4E2D;&#x7684;&#x67D0;&#x4E9B;&#x8BA2;&#x5355;&#x5DF2;&#x7ED3;&#x675F;&#xFF0C;&#x65E0;&#x6CD5;&#x5F55;&#x5165;&#x8DDF;&#x5355;&#x5458;&#xFF01;&apos;);
+  end if;
+    update ordered set merchandiserid =upper(@merchandiserid@)
+    where ord_id in (%Selection%);
+end;
+</code></pre><h5 id="8&#x3001;&#x8BBE;&#x7F6E;&#x9001;&#x8D27;&#x5355;"><a name="8&#x3001;&#x8BBE;&#x7F6E;&#x9001;&#x8D27;&#x5355;" class="plugin-anchor" href="#8&#x3001;&#x8BBE;&#x7F6E;&#x9001;&#x8D27;&#x5355;"><i class="fa fa-link" aria-hidden="true"></i></a>8&#x3001;&#x8BBE;&#x7F6E;&#x9001;&#x8D27;&#x5355;</h5>
+<ul>
+<li>&#x8BA2;&#x5355;&#x65E0;ASN&#xFF0C;&#x65E0;&#x6CD5;&#x8BBE;&#x7F6E;&#x4E3A;&#x9001;&#x8D27;&#x5355;</li>
+<li>&#x8BA2;&#x5355;&#x7ED3;&#x675F;&#x65F6;&#x95F4;&#x4E0D;&#x4E3A;&#x7A7A;&#xFF0C;&#x65E0;&#x6CD5;&#x8BBE;&#x7F6E;&#x9001;&#x8D27;&#x5355;</li>
+<li>&#x8BA2;&#x5355;&#x4E0B;ASN&#x8BA2;&#x5355;&#x7684;&#x9884;&#x8BA1;&#x5230;&#x8D27;&#x65F6;&#x95F4;&#x4E3A;&#x7A7A;&#xFF0C;&#x65E0;&#x6CD5;&#x8BBE;&#x7F6E;&#x9001;&#x8D27;&#x5355;</li>
+<li>&#x8BA2;&#x5355;&#x7684;&#x8BA2;&#x5355;&#x91CF;&#x7B49;&#x4E8E;&#x5230;&#x8D27;&#x91CF;&#xFF0C;&#x65E0;&#x6CD5;&#x8BBE;&#x7F6E;&#x9001;&#x8D27;&#x5355;</li>
+</ul>
 <h5 id="9&#x3001;&#x63D0;&#x53D6;&#x8BA2;&#x5355;"><a name="9&#x3001;&#x63D0;&#x53D6;&#x8BA2;&#x5355;" class="plugin-anchor" href="#9&#x3001;&#x63D0;&#x53D6;&#x8BA2;&#x5355;"><i class="fa fa-link" aria-hidden="true"></i></a>9&#x3001;&#x63D0;&#x53D6;&#x8BA2;&#x5355;</h5>
-<p>&#x200B;       </p>
-<p>&#x200B;    </p>
+<pre><code>Declare
+P_I int;
+Begin
+ for Item in (Select Ord_ID from Ordered where Ord_ID in (%Selection%) and FinishTime is null)
+ Loop
+  select max(1) into P_I from Ordered where Ord_ID=Item.Ord_ID and OperatorID is null;
+  if P_I=1 then
+   update Ordered set OperatorID=%CurrentUserID%,ExtractTime=sysdate where ord_id=Item.Ord_ID and OperatorID is null and FinishTime is null;  
+   Update Orders set ConfirmAmount=OrderAmount,CONFIRMDELIVERDAYS=(select DeliverDate-trunc(CreateTime) from Ordered where Ord_ID=Item.Ord_ID) where Ord_ID=Item.Ord_ID;
+   Update OrdersItem set ConfirmAmount=OrderAmount where Ord_ID=Item.Ord_ID;
+   update Reinforces set OrderStatus=&apos;&#x5F85;&#x6536;&#x8D27;&apos; where Cancelled=0 and TableType=&apos;I&apos;and TableID=Item.Ord_ID
+     and TableID not in (select ord_id from Ordered where FinishTime is not null);
+  else
+   Update Ordered set OperatorID=%CurrentUserID% where Ord_ID=Item.Ord_ID and finishtime is null;
+  end if;
+ end loop;
+end;
+</code></pre><h2 id="13&#x8BA2;&#x5355;&#x7ED3;&#x675F;&#x6536;&#x8D27;&#x53CA;&#x63A7;&#x5236;"><a name="13&#x8BA2;&#x5355;&#x7ED3;&#x675F;&#x6536;&#x8D27;&#x53CA;&#x63A7;&#x5236;" class="plugin-anchor" href="#13&#x8BA2;&#x5355;&#x7ED3;&#x675F;&#x6536;&#x8D27;&#x53CA;&#x63A7;&#x5236;"><i class="fa fa-link" aria-hidden="true"></i></a>1.3&#x8BA2;&#x5355;&#x7ED3;&#x675F;&#x6536;&#x8D27;&#x53CA;&#x63A7;&#x5236;</h2>
+<h3 id="131&#x76F8;&#x5173;&#x8FC7;&#x7A0B;"><a name="131&#x76F8;&#x5173;&#x8FC7;&#x7A0B;" class="plugin-anchor" href="#131&#x76F8;&#x5173;&#x8FC7;&#x7A0B;"><i class="fa fa-link" aria-hidden="true"></i></a>1.3.1&#x76F8;&#x5173;&#x8FC7;&#x7A0B;</h3>
+<pre><code>Pendorder
+</code></pre><h3 id="132&#x7A0B;&#x5E8F;&#x63A7;&#x5236;"><a name="132&#x7A0B;&#x5E8F;&#x63A7;&#x5236;" class="plugin-anchor" href="#132&#x7A0B;&#x5E8F;&#x63A7;&#x5236;"><i class="fa fa-link" aria-hidden="true"></i></a>1.3.2&#x7A0B;&#x5E8F;&#x63A7;&#x5236;</h3>
+<ul>
+<li>&#x5355;&#x636E;&#x5DF2;&#x7ECF;&#x7ED3;&#x675F;&#x4E0D;&#x53EF;&#x64CD;&#x4F5C;</li>
+<li>&#x8BA2;&#x5355;&#x6CA1;&#x6709;&#x6536;&#x8D27;&#x91CF;&#x4E0D;&#x53EF;&#x64CD;&#x4F5C;</li>
+<li>&#x5355;&#x636E;&#x65E0;&#x5206;&#x914D;&#x4E0D;&#x53EF;&#x64CD;&#x4F5C;</li>
+<li>&#x8272;&#x7801;&#x4E0E;&#x7CFB;&#x7EDF;&#x4E0D;&#x7B26;&#x4E0D;&#x53EF;&#x64CD;&#x4F5C;</li>
+<li>&#x67D0;&#x4E9B;&#x5546;&#x54C1;&#x7F3A;&#x5C11;&#x8272;&#x7801;&#x7684;&#x6536;&#x8D27;&#x91CF;&#x4E0D;&#x53EF;&#x64CD;&#x4F5C;</li>
+<li>&#x5546;&#x54C1;&#x5FC5;&#x987B;&#x5168;&#x90E8;&#x5206;&#x914D;&#xFF08;&#x4E4B;&#x524D;&#x53EF;&#x4E00;&#x5355;&#x591A;&#x54C1;&#xFF09;</li>
+<li>&#x8272;&#x7801;&#x5FC5;&#x987B;&#x8FDB;&#x884C;&#x5206;&#x914D;</li>
+<li>&#x5355;&#x54C1;&#x6536;&#x8D27;&#x91CF;&#x4E0D;&#x53EF;&#x8D85;&#x51FA;&#x8BA2;&#x8D27;&#x91CF;+&#x95E8;&#x5E97;&#x6570;</li>
+<li>&#x8272;&#x7801;&#x6536;&#x8D27;&#x91CF;&#x4E0D;&#x53EF;&#x8D85;&#x51FA;&#x8BA2;&#x8D27;&#x91CF;+&#x95E8;&#x5E97;&#x6570;</li>
+<li>&#x4E0D;&#x80FD;&#x5BF9;&#x5DF2;&#x7ECF;&#x7981;&#x7528;&#x7684;&#x5E97;&#x8FDB;&#x884C;&#x5206;&#x914D;</li>
+<li>&#x8272;&#x7801;&#x6536;&#x8D27;&#x91CF;&#x4E4B;&#x548C;&#x4E0E;&#x5355;&#x54C1;&#x6536;&#x8D27;&#x91CF;&#x4E0D;&#x7B26;&#x65F6;&#x4E0D;&#x53EF;&#x64CD;&#x4F5C;</li>
+<li>&#x8272;&#x7801;&#x91CF;&#x5206;&#x914D;&#x91CF;&#x4E4B;&#x548C;&#x4E0E;&#x5355;&#x54C1;&#x603B;&#x5206;&#x914D;&#x91CF;&#x4E0D;&#x7B26;&#x65F6;&#x4E0D;&#x53EF;&#x64CD;&#x4F5C;</li>
+<li>&#x5404;&#x5E97;&#x7684;&#x5206;&#x914D;&#x91CF;&#x4E4B;&#x548C;&#x4E0E;&#x5355;&#x54C1;&#x6536;&#x8D27;&#x91CF;&#x4E0D;&#x7B26;&#x65F6;&#x4E0D;&#x53EF;&#x64CD;&#x4F5C;</li>
+<li>&#x5546;&#x54C1;&#x4E0D;&#x662F;&#x96C6;&#x4E2D;&#x91C7;&#x8D2D;&#x5546;&#x54C1;&#xFF0C;&#x4E0D;&#x80FD;&#x64CD;&#x4F5C;</li>
+</ul>
+<h3 id="133&#x6536;&#x8D27;&#x6D41;&#x7A0B;"><a name="133&#x6536;&#x8D27;&#x6D41;&#x7A0B;" class="plugin-anchor" href="#133&#x6536;&#x8D27;&#x6D41;&#x7A0B;"><i class="fa fa-link" aria-hidden="true"></i></a>1.3.3&#x6536;&#x8D27;&#x6D41;&#x7A0B;</h3>
+<p><strong>&#x7B2C;&#x4E00;&#x6B65;</strong></p>
+<ol>
+<li>&#x5C06;&#x6570;&#x636E;&#x5199;&#x5165;&#x8FDB;&#x4ED3;&#x5355;&#xFF08;Ingood&#xFF09;&#xFF1A;&#x6B64;&#x65F6;&#x8FDB;&#x4ED3;&#x5355;&#x7C7B;&#x578B;&#x4F4D;(p_Ingoodtype := &apos;PO&apos;</li>
+<li>&#x7F51;&#x5E97;&#x8BA2;&#x5355;&#xFF08;WP&#xFF09;&#x3001;&#x73B0;&#x8D27;&#x8BA2;&#x5355;&#xFF08;PP&#xFF09;&#x3001;&#x65B0;&#x5E97;&#x8BA2;&#x5355;&#xFF08;NP&#xFF09;&#x53EF;&#x76F4;&#x63A5;&#x901A;&#x8FC7;&#x8BA2;&#x5355;&#x5173;&#x8054;&#x6536;&#x8D27;&#x6D41;&#x6C34;&#x53D6;&#x5F97;&#x6700;&#x65E9;&#x9001;&#x8D27;&#x65E5;&#x671F;&#xFF08;Supsendgoodsdate&#xFF09;</li>
+<li>&#x96C6;&#x91C7;&#xFF08;CP&#xFF09;&#x3001;&#x5206;&#x91C7;&#xFF08;SP&#xFF09;&#x9700;&#x901A;&#x8FC7;&#x8BA2;&#x5355;&#x5173;&#x8054;&#x9884;&#x8BA1;&#x5230;&#x8D27;&#x5355;&#x518D;&#x5173;&#x8054;&#x6536;&#x8D27;&#x6D41;&#x6C34;&#x53D6;&#x6700;&#x65E9;&#x9001;&#x8D27;&#x65E5;&#x671F;&#xFF08;Supsendgoodsdate&#xFF09;</li>
+<li>&#x5C06;&#x5355;&#x54C1;&#x6536;&#x8D27;&#x91CF;&#x3001;&#x4F9B;&#x5E94;&#x5546;&#x6536;&#x8D27;&#x65F6;&#x95F4;&#x5199;&#x5165;&#x8FDB;&#x8D27;&#x5355;&#x5546;&#x54C1;&#x8868;&#xFF08;INGOODS&#xFF09;&#xFF0C;&#x8FDB;&#x4ED3;&#x91CF;&#x4F4D;&#x8BA2;&#x5355;&#x6536;&#x8D27;&#x91CF;&#x3001;&#x521B;&#x5EFA;&#x65F6;&#x95F4;&#x4E3A;&#x5F53;&#x524D;&#x65F6;&#x95F4;&#x3001;&#x9001;&#x8D27;&#x65E5;&#x671F;&#x4E3A;&#x6536;&#x8D27;&#x6D41;&#x6C34;&#x6700;&#x65E9;&#x65F6;&#x95F4;</li>
+</ol>
+<p><strong>&#x7B2C;&#x4E8C;&#x6B65;</strong></p>
+<ol>
+<li>&#x5355;&#x636E;&#x7C7B;&#x578B;&#x4E3A;&#x96C6;&#x91C7;&#xFF08;CP&#xFF09;&#x3001;&#x5206;&#x91C7;&#xFF08;SP&#xFF09;&#x5219;&#x5F53;&#x5206;&#x8D27;&#x91CF;&#xFF08;ASSIGNAMOUNT&#xFF09;&#x5927;&#x4E8E;0&#x65F6;&#xFF0C;&#x7528;&#x95E8;&#x5E97;&#x5546;&#x54C1;&#x8BA2;&#x5355;&#x8868;&#xFF08;ORDERSHOPS&#xFF09;&#x8868;&#x5355;&#x54C1;&#x5355;&#x5E97;&#x7684;&#x5206;&#x8D27;&#x91CF;&#x66F4;&#x65B0;&#x6B20;&#x8D27;&#x8868;&#x7684;&#x6B20;&#x8D27;&#x91CF;</li>
+<li>&#x5982;&#x679C;&#x662F;&#x73B0;&#x8D27;&#x5355;&#xFF08;PP&#xFF09;&#x3001;&#xFF08;RP&#xFF09;&#x5355;&#x65F6;&#xFF0C;&#x95E8;&#x5E97;&#x4E3A;&#x8BA2;&#x5355;&#x7684;&#x4ED3;&#x5E93;&#xFF0C;&#x7528;&#x8BE5;&#x8BA2;&#x5355;&#x7684;&#x4ED3;&#x5E93;&#x5355;&#x54C1;&#x6536;&#x8D27;&#x91CF;&#x66F4;&#x65B0;&#x8BE5;&#x4ED3;&#x5E93;&#x5355;&#x54C1;&#x6B20;&#x8D27;&#x91CF;</li>
+<li>&#x5982;&#x679C;&#x662F;&#x65B0;&#x5E97;&#x8BA2;&#x5355;&#xFF08;NP&#xFF09;&#x5219;&#x66F4;&#x65B0;&#x5BF9;&#x5E94;&#x4ED3;&#x5E93;&#xFF08;GZN\YWN&#xFF09;&#x5355;&#x54C1;&#x6B20;&#x8D27;&#x91CF;</li>
+<li>&#x5982;&#x679C;&#x662F;&#x7F51;&#x5E97;&#x8BA2;&#x5355;&#xFF08;WP&#xFF09;&#xFF0C;&#x5219;&#x66F4;&#x65B0;GZW&#x5BF9;&#x5E94;&#x5355;&#x54C1;&#x7684;&#x6B20;&#x8D27;&#x91CF;</li>
+</ol>
+<p><strong>&#x7B2C;&#x4E09;&#x6B65;</strong></p>
+<ol>
+<li>&#x5C06;&#x4E0D;&#x5B58;&#x5728;Preparegoods&#x8BE5;&#x8868;&#x7684;&#x5355;&#x54C1;&#x5199;&#x5165;</li>
+</ol>
+<p><strong>&#x7B2C;&#x56DB;&#x6B65;</strong></p>
+<ol>
+<li>&#x66F4;&#x65B0;&#x8BA2;&#x5355;&#x5546;&#x54C1;&#x8868;&#xFF08;ORDERS&#xFF09;&#x7684;&#x5230;&#x8D27;&#x91CF;&#xFF08;&#x539F;&#x5230;&#x8D27;&#x91CF;+&#x672C;&#x6B21;&#x6536;&#x8D27;&#x91CF;&#xFF09;&#xFF0C;&#x66F4;&#x65B0;&#x6536;&#x8D27;&#x91CF;&#x4E3A;&#x7A7A;</li>
+</ol>
+<p><strong>&#x7B2C;&#x4E94;&#x6B65;</strong></p>
+<ol>
+<li><p>&#x5C06;&#x5355;&#x54C1;&#x6761;&#x7801;&#x8FDB;&#x8D27;&#x91CF;&#x5199;&#x5165;&#x8FDB;&#x4ED3;&#x5355;&#x8272;&#x7801;&#x8868;&#xFF08;INGOODSITEM&#xFF09;</p>
+</li>
+<li><p>&#x8FDB;&#x4ED3;&#x5355;&#x8272;&#x7801;&#x8868;&#x7684;&#x8FDB;&#x4ED3;&#x91CF;&#x4E3A;&#x672C;&#x6B21;&#x6536;&#x8D27;&#x91CF;&#xFF0C;&#x589E;&#x52A0;&#x6279;&#x53D1;&#x6570;&#x91CF;&#x5199;&#x5165;</p>
+</li>
+<li><p>&#x6279;&#x53D1;&#x6570;&#x91CF;&#x8BA1;&#x7B97;&#x89C4;&#x5219;&#xFF1A;&#x2460;&#x5F53;&#x6279;&#x53D1;&#x5360;&#x6BD4;&#x5C0F;&#x4E8E;&#x7B49;&#x4E8E;0&#x65F6;&#xFF0C;&#x6279;&#x53D1;&#x6570;&#x91CF;&#x4E3A;&#xFF1A;0&#xFF1B;</p>
+<p>&#x2461;&#x82E5;&#x5230;&#x8D27;&#x91CF;&#x5C0F;&#x4E8E;&#xFF08;&#x8BA2;&#x5355;&#x91CF;&#x4E58;&#x4E8E;&#x6279;&#x53D1;&#x5360;&#x6BD4;&#xFF09;&#x5411;&#x4E0A;&#x53D6;&#x6574;&#xFF0C;&#x6279;&#x53D1;&#x6570;&#x91CF;&#x4E3A;&#xFF1A;&#x53D6;&#xFF08;&#x5411;&#x4E0A;&#x53D6;&#x6574;&#xFF08;&#x8BA2;&#x5355;&#x91CF;&#x4E58;&#x4E8E;&#x6279;&#x53D1;&#x5360;&#x6BD4;&#xFF09;&#xFF0C;&#x6536;&#x8D27;&#x91CF;&#xFF09;&#x4E2D;&#x7684;&#x6700;&#x5C0F;&#x503C;&#x518D;&#x52A0;&#x4E0A;&#xFF08;&#x5230;&#x8D27;&#x91CF;+&#x6536;&#x8D27;&#x91CF;-&#x8BA2;&#x5355;&#x91CF;&#xFF0C;0&#xFF09;&#x4E2D;&#x7684;&#x6700;&#x5927;&#x503C;</p>
+<p>&#x2462;&#x5982;&#x679C;</p>
+<p>--&#x66F4;&#x65B0;&#x4E2D; </p>
+</li>
+</ol>
 <footer class="page-footer"><span class="copyright">powered by Gitbook</span><span class="footer-modification">File Modify: 
-2021-01-26 18:07:41
+2021-02-02 10:10:11
 </span></footer></body></html>
                                 
                                 </section>
@@ -448,7 +638,7 @@ end;
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"订单","level":"1.1.2.3","depth":3,"next":{"title":"预计到货单","level":"1.1.2.4","depth":3,"path":"004part/asnordered/sub_asnorder.md","ref":"004part/asnordered/sub_asnorder.md","articles":[]},"previous":{"title":"采购申请单","level":"1.1.2.2","depth":3,"path":"004part/order_request/sub_order_req.md","ref":"004part/order_request/sub_order_req.md","articles":[]},"dir":"ltr"},"config":{"tbfed-pagefooter":{"copyright":"Copyright & jxmlxg.com 2021","modify_label":"该文章修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"plugins":["-lunr","-search","search-pro","back-to-top-button","chapter-fold","copy-code-button","splitter","lightbox","pageview-count","page-toc-button","anchors","tbfed-pagefooter","-sharing","sharing-plus","livereload"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{},"chapter-fold":{},"livereload":{},"splitter":{},"search-pro":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"lightbox":{"jquery":true,"sameUuid":false},"page-toc-button":{"maxTocDepth":20,"minTocSize":2},"back-to-top-button":{},"pageview-count":{},"copy-code-button":{},"sharing":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","author":"ZYS36","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SF程序控制","language":"zh-hans","gitbook":"*","sharing":{"all":["facebook","google","linkedin","twitter","weibo","qq"]}},"file":{"path":"004part/ordered/sub_ordered.md","mtime":"2021-01-26T10:07:41.626Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-01-27T09:33:45.547Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"订单","level":"1.1.2.3","depth":3,"next":{"title":"预计到货单","level":"1.1.2.4","depth":3,"path":"004part/asnordered/sub_asnorder.md","ref":"004part/asnordered/sub_asnorder.md","articles":[]},"previous":{"title":"采购申请单","level":"1.1.2.2","depth":3,"path":"004part/order_request/sub_order_req.md","ref":"004part/order_request/sub_order_req.md","articles":[]},"dir":"ltr"},"config":{"tbfed-pagefooter":{"copyright":"Copyright & jxmlxg.com 2021","modify_label":"该文章修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"plugins":["-lunr","-search","search-pro","back-to-top-button","chapter-fold","copy-code-button","splitter","lightbox","pageview-count","page-toc-button","anchors","tbfed-pagefooter","-sharing","sharing-plus","livereload"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{},"chapter-fold":{},"livereload":{},"splitter":{},"search-pro":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"lightbox":{"jquery":true,"sameUuid":false},"page-toc-button":{"maxTocDepth":20,"minTocSize":2},"back-to-top-button":{},"pageview-count":{},"copy-code-button":{},"sharing":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","author":"ZYS36","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SF程序控制","language":"zh-hans","gitbook":"*","sharing":{"all":["facebook","google","linkedin","twitter","weibo","qq"]}},"file":{"path":"004part/ordered/sub_ordered.md","mtime":"2021-02-02T02:10:11.558Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-02-02T02:10:17.844Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

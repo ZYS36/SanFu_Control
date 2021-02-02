@@ -10,7 +10,7 @@
 -  纳税人身份分为：小规模纳税人、一般纳税人
 -  社会信用代码：不能重复
 -  在修改供应商时已经结束修改的供应商，不能再结束修改。
--  修改供应商时只能修改当前用户修改的记录，若需修改他人记录，则需点击![](E:\picture\003.png)后修改
+-  修改供应商时只能修改当前用户修改的记录，若需修改他人记录，则需点击![](https://jxmlxg.com/images/003.png)后修改
 -  预付功能：预付比例、预付开始时间、预付结束时间，预付比例一旦设置则预付开始时间、结束时间不能为空
 
 ### 1.1.2主/辅供应商继承关系
@@ -109,7 +109,27 @@
 
 ## 2.4财务规范化-调配控制
 
-- 目前系统控制已经取消，不管开票是否都可调配至试点店
+- 基于现货订单和仓库调配单，如商品不开票则不能调配至试点店
+
+```
+--checkid = 767 
+Select '配货单号[' || a.Alloc_Id || ']中商品[' || a.Goo_Id || ']属性为不开发票,不能调配至试点店[' ||
+       a.Sho_Id || ']'
+  From Alc_Allocs a
+ Inner Join Goods b
+    On a.Goo_Id = b.Goo_Id
+   And Nvl(b.Is_Receipt, 0) = 0
+ Where a.Alloc_Id In (%Selection%)
+   And a.Final_Assignamount > 0
+   And Exists (Select 1
+          From Sfinterface.Pl_Dic_Code_Detail t
+         Where t.Code_Type = 'STD_SHOP'
+           And t.Pause = 0
+           And a.Sho_Id = t.Code_Value)
+   And Rownum <= 5
+```
+
+
 
 ## 2.5财务规范化-调拨单控制
 
