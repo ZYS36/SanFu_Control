@@ -113,19 +113,12 @@
 
 ```
 --checkid = 767 
-Select '配货单号[' || a.Alloc_Id || ']中商品[' || a.Goo_Id || ']属性为不开发票,不能调配至试点店[' ||
-       a.Sho_Id || ']'
+Select '配货单号[' || a.Alloc_Id || ']中商品[' || a.Goo_Id || ']属性为不开发票,不能调配至试点店[' || a.Sho_Id || ']'
   From Alc_Allocs a
- Inner Join Goods b
-    On a.Goo_Id = b.Goo_Id
-   And Nvl(b.Is_Receipt, 0) = 0
- Where a.Alloc_Id In (%Selection%)
-   And a.Final_Assignamount > 0
-   And Exists (Select 1
-          From Sfinterface.Pl_Dic_Code_Detail t
-         Where t.Code_Type = 'STD_SHOP'
-           And t.Pause = 0
-           And a.Sho_Id = t.Code_Value)
+ Inner Join Goods b On a.Goo_Id = b.Goo_Id And Nvl(b.Is_Receipt, 0) = 0
+ Where a.Alloc_Id In (%Selection%) And a.Final_Assignamount > 0
+   And Exists (Select 1 From Sfinterface.Pl_Dic_Code_Detail t
+         Where t.Code_Type = 'STD_SHOP' And t.Pause = 0 And a.Sho_Id = t.Code_Value)
    And Rownum <= 5
 ```
 
